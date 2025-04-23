@@ -47,7 +47,8 @@
           <!-- Submit Button -->
           <button
             type="submit"
-            class="w-full py-3 px-4 bg-primary hover:bg-primary-dark text-black font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-md":disabled="isLoading  form.password !== form.confirmPassword"
+            class="w-full py-3 px-4 bg-primary hover:bg-primary-dark text-black font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-md"
+            :disabled="isLoading || form.password !== form.confirmPassword"
           >
             <span v-if="!isLoading">Reset Password</span>
             <span v-else class="flex items-center justify-center">
@@ -119,7 +120,7 @@
       form.value.password = ''
       form.value.confirmPassword = ''
     } catch (error) {
-      errorMessage.value = error.response?.data?.message  'Failed to reset password. The link may have expired.'
+      errorMessage.value = error.response?.data?.message || 'Failed to reset password. The link may have expired.'
     } finally {
       isLoading.value = false
     }

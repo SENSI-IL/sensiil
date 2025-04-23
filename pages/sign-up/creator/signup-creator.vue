@@ -209,7 +209,7 @@ const selectedCountry = ref(countries[0]); // Default to Ethiopiaconst handleSub
     console.error('Signup failed:', error);
   }
   */
-};
+ ;
 </script>
 
 <style scoped>

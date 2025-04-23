@@ -80,7 +80,7 @@
       //   body: { email: email.value }
       // })
       
-      successMessage.value = Password reset link sent to ${email.value}. Please check your inbox.
+      successMessage.value = `Password reset link sent to ${email.value}. Please check your inbox.`
       email.value = ''
     } catch (error) {
       errorMessage.value = error.response?.data?.message || 'Failed to send reset link. Please try again.'
@@ -105,7 +105,8 @@
     box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -2px rgba(79, 70, 229, 0.05);
   }
   
-  button[type="submit"]:disabled {opacity: 0.7;
+  button[type="submit"]:disabled {
+    opacity: 0.7;
     cursor: not-allowed;
   }
   </style>

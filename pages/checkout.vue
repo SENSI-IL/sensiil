@@ -1,88 +1,89 @@
 <template>
-    <div class="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-md mx-auto">
-        <!-- Progress Steps -->
-        <div class="flex justify-between mb-8 relative">
-          <div class="absolute top-1/2 h-1 w-full bg-gray-300 -z-10"></div>
+  <div class="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md mx-auto">
+      <!-- Progress Steps -->
+      <div class="flex justify-between mb-8 relative">
+        <div class="absolute top-1/2 h-1 w-full bg-gray-300 -z-10"></div>
+        <div 
+          class="absolute top-1/2 h-1 bg-black -z-10 transition-all duration-300"
+          :style="{ width: progressWidth }"
+        ></div>
+        
+        <div v-for="(step, index) in steps" :key="index" class="flex flex-col items-center">
           <div 
-            class="absolute top-1/2 h-1 bg-black -z-10 transition-all duration-300"
-            :style="{ width: progressWidth }"
-          ></div>
-          
-          <div v-for="(step, index) in steps" :key="index" class="flex flex-col items-center">
-            <div 
-              class="w-8 h-8 rounded-full flex items-center justify-center mb-2 text-sm font-medium"
-              :class="currentStep >= index ? 'bg-black text-white' : 'bg-gray-300 text-gray-600'"
-            >
-              {{ index + 1 }}
-            </div>
-            <span class="text-xs text-gray-600">{{ step }}</span>
-          </div>
-        </div>
-  
-        <!-- Cart Summary (Step 1) -->
-        <div v-if="currentStep === 0" class="bg-white p-6 rounded-lg shadow-sm border border-gray-300">
-          <h2 class="text-xl font-bold text-gray-800 mb-4">Your Order</h2>
-          
-          <div class="space-y-4 mb-6">
-            <div v-for="item in cart" :key="item.id" class="flex items-center justify-between py-3 border-b border-gray-200">
-              <div class="flex items-center">
-                <img :src="item.image" class="w-12 h-12 object-cover rounded mr-3">
-                <div>
-                  <h3 class="font-medium text-gray-800">{{ item.name }}</h3>
-                  <p class="text-gray-500 text-sm">{{ item.quantity }} × {{ formatCurrency(item.price) }}</p>
-                </div>
-              </div>
-              <span class="font-medium">{{ formatCurrency(item.price * item.quantity) }}</span>
-            </div>
-          </div>
-  
-          <div class="flex justify-between py-4 border-t border-gray-200">
-            <span class="text-gray-600">Total</span>
-            <span class="text-lg font-bold text-black">{{ formatCurrency(total) }}</span>
-          </div>
-  
-          <button 
-            @click="currentStep++"
-            class="w-full mt-4 py-3 bg-black hover:bg-gray-800 text-white rounded-lg font-medium transition-colors"
+            class="w-8 h-8 rounded-full flex items-center justify-center mb-2 text-sm font-medium"
+            :class="currentStep >= index ? 'bg-black text-white' : 'bg-gray-300 text-gray-600'"
           >
-            Continue to Payment
-          </button>
-        </div>
-  
-        <!-- Chapa Payment Form (Step 2) -->
-        <div v-else-if="currentStep === 1" class="bg-white p-6 rounded-lg shadow-sm border border-gray-300">
-          <h2 class="text-xl font-bold text-gray-800 mb-4">Payment Information</h2>
-          
-          <!-- Payment Method Radio Buttons -->
-          <div class="mb-6 space-y-3">
-            <label 
-              v-for="method in paymentMethods"
-              :key="method.id"
-              class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
-              :class="selectedMethod === method.id ? 'border-black bg-black/5' : 'border-gray-300'"
-            >
-              <input 
-                type="radio" 
-                v-model="selectedMethod" 
-                :value="method.id" 
-                class="h-5 w-5 text-black focus:ring-black"
-              >
-              <div class="flex items-center ml-4">
-                <img 
-                  :src="method.icon" 
-                  :alt="method.name" 
-                  class="h-8 w-8 object-contain mr-3"
-                  @error="handleImageError"
-                >
-                <div>
-                  <span class="font-medium block">{{ method.name }}</span>
-                  <span class="text-xs text-gray-500">{{ method.description }}</span>
-                </div>
-              </div>
-            </label>
+            {{ index + 1 }}
           </div>
-          <!-- Mobile Money/Telebirr Fields -->
+          <span class="text-xs text-gray-600">{{ step }}</span>
+        </div>
+      </div>
+
+      <!-- Cart Summary (Step 1) -->
+      <div v-if="currentStep === 0" class="bg-white p-6 rounded-lg shadow-sm border border-gray-300">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Your Order</h2>
+        
+        <div class="space-y-4 mb-6">
+          <div v-for="item in cart" :key="item.id" class="flex items-center justify-between py-3 border-b border-gray-200">
+            <div class="flex items-center">
+              <img :src="item.image" class="w-12 h-12 object-cover rounded mr-3">
+              <div>
+                <h3 class="font-medium text-gray-800">{{ item.name }}</h3>
+                <p class="text-gray-500 text-sm">{{ item.quantity }} × {{ formatCurrency(item.price) }}</p>
+              </div>
+            </div>
+            <span class="font-medium">{{ formatCurrency(item.price * item.quantity) }}</span>
+          </div>
+        </div>
+
+        <div class="flex justify-between py-4 border-t border-gray-200">
+          <span class="text-gray-600">Total</span>
+          <span class="text-lg font-bold text-black">{{ formatCurrency(total) }}</span>
+        </div>
+
+        <button 
+          @click="currentStep++"
+          class="w-full mt-4 py-3 bg-black hover:bg-gray-800 text-white rounded-lg font-medium transition-colors"
+        >
+          Continue to Payment
+        </button>
+      </div>
+
+      <!-- Chapa Payment Form (Step 2) -->
+      <div v-else-if="currentStep === 1" class="bg-white p-6 rounded-lg shadow-sm border border-gray-300">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Payment Information</h2>
+        
+        <!-- Payment Method Radio Buttons -->
+        <div class="mb-6 space-y-3">
+          <label 
+            v-for="method in paymentMethods"
+            :key="method.id"
+            class="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
+            :class="selectedMethod === method.id ? 'border-black bg-black/5' : 'border-gray-300'"
+          >
+            <input 
+              type="radio" 
+              v-model="selectedMethod" 
+              :value="method.id" 
+              class="h-5 w-5 text-black focus:ring-black"
+            >
+            <div class="flex items-center ml-4">
+              <img 
+                :src="method.icon" 
+                :alt="method.name" 
+                class="h-8 w-8 object-contain mr-3"
+                @error="handleImageError"
+              >
+              <div>
+                <span class="font-medium block">{{ method.name }}</span>
+                <span class="text-xs text-gray-500">{{ method.description }}</span>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Mobile Money/Telebirr Fields -->
         <div v-if="['mobile_money', 'telebirr'].includes(selectedMethod)" class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
@@ -137,6 +138,75 @@
             <p v-if="errors.account" class="mt-1 text-sm text-red-600">{{ errors.account }}</p>
           </div>
         </div>
+
+        <!-- Card Payment Fields -->
+        <div v-if="selectedMethod === 'card'" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+            <input
+              v-model="payment.cardNumber"
+              type="text"
+              placeholder="4242 4242 4242 4242"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black"
+              @input="formatCardNumber"
+            >
+            <p v-if="errors.cardNumber" class="mt-1 text-sm text-red-600">{{ errors.cardNumber }}</p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+              <input
+                v-model="payment.expiry"
+                type="text"
+                placeholder="MM/YY"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black"
+                @input="formatExpiry"
+              >
+              <p v-if="errors.expiry" class="mt-1 text-sm text-red-600">{{ errors.expiry }}</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+              <input
+                v-model="payment.cvv"
+                type="password"
+                placeholder="123"
+                maxlength="3"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black"
+                @input="validateCVV"
+              >
+              <p v-if="errors.cvv" class="mt-1 text-sm text-red-600">{{ errors.cvv }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="mt-6 space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <input
+              v-model="payment.name"
+              type="text"
+              placeholder="John Doe"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black"
+              @input="validateName"
+            >
+            <p v-if="errors.name" class="mt-1 text-sm text-red-600">{{ errors.name }}</p>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input
+              v-model="payment.email"
+              type="email"
+              placeholder="your@email.com"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black"
+              @input="validateEmail"
+            >
+            <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email }}</p>
+          </div>
+        </div>
+
         <div class="flex justify-between mt-8">
           <button 
             @click="currentStep--"
@@ -147,7 +217,7 @@
           <button 
             @click="processPayment"
             class="px-6 py-3 bg-black hover:bg-gray-800 text-white rounded-lg font-medium transition-colors"
-            :disabled="processing  !isFormValid"
+            :disabled="processing || !isFormValid"
           >
             <span v-if="!processing">Pay {{ formatCurrency(total) }}</span>
             <span v-else class="flex items-center">
@@ -238,8 +308,7 @@ const paymentMethods = [
   { 
     id: 'card', 
     name: 'Debit/Credit Card', 
-    // icon: 'https://upload.wikimedia.org/wikipedia/commons
-    // /thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png',
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png',
     description: 'Visa, Mastercard, etc.'
   }
 ]
@@ -325,7 +394,7 @@ const validateCVV = () => {
 
 // Form validation state
 const isFormValid = computed(() => {
-  if (!payment.name !payment.email) return false
+  if (!payment.name || !payment.email) return false
   
   if (['mobile_money', 'telebirr'].includes(selectedMethod.value)) {
     return !errors.phone && !!payment.phone
@@ -357,6 +426,7 @@ const formatExpiry = () => {
   payment.expiry = payment.expiry.replace(/\D/g, '').replace(/(\d{2})(\d{0,2})/, '$1/$2').substring(0, 5)
   validateExpiry()
 }
+
 // Process payment
 const processPayment = async () => {
   // Validate all fields
@@ -389,7 +459,7 @@ const processPayment = async () => {
         currency: 'ETB',
         email: payment.email,
         first_name: payment.name.split(' ')[0],
-        last_name: payment.name.split(' ')[1]  '',
+        last_name: payment.name.split(' ')[1] || '',
         tx_ref: orderId.value,
         payment_method: selectedMethod.value,
         ...(selectedMethod.value === 'mobile_money' && {
@@ -413,10 +483,10 @@ const processPayment = async () => {
     if (data.status === 'success') {
       currentStep.value++
     } else {
-      alert(`Payment failed: ${data.message  'Unknown error'}`)
+      alert(`Payment failed: ${data.message || 'Unknown error'}`)
     }
   } catch (error) {
-    alert(Payment error: ${error.message})
+    alert(`Payment error: ${error.message}`)
   } finally {
     processing.value = false
   }

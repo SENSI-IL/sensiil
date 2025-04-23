@@ -14,7 +14,7 @@
 
       <!-- Right-side button -->
       <div class="hidden md:flex">
-        <router-link to="/login" class="btn-login">Login</router-link>
+        <NuxtLink to="/auth/login" class="btn-login">Login</NuxtLink>
       </div>
 
       <!-- Mobile menu toggle -->
@@ -39,7 +39,7 @@
           <li><NuxtLink @click="closeMenu" to="/">Home</NuxtLink></li>
           <li><NuxtLink @click="closeMenu" to="/about">About</NuxtLink></li>
           <li><NuxtLink @click="closeMenu" to="/contact">Contact</NuxtLink></li>
-          <li><NuxtLink @click="closeMenu" to="/login.vue" class="btn-login">Login</NuxtLink></li>
+          <li><NuxtLink @click="closeMenu" to="/auth/login" class="btn-login">Login</NuxtLink></li>
           <li><NuxtLink @click="closeMenu" to="/explore">Explore</NuxtLink></li>
         </ul>
       </div>

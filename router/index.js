@@ -4,7 +4,7 @@ import Home from '@/pages/index.vue';          // Adjust paths as needed
 import Explore from '@/components/explore/exploreint.vue';
 import About from '@/pages/about.vue';         // Create this file if missing
 import Contact from '@/pages/contact.vue';     // Create this file if missing
-import Login from '@/components/auth/login.vue';
+import Login from '~/pages/auth/login.vue';
 
 const routes = [
   { path: '/', component: Home },
