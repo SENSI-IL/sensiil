@@ -12,9 +12,10 @@
         <li><NuxtLink to="/contact">Contact</NuxtLink></li>
       </ul>
 
-      <!-- Right-side button -->
-      <div class="hidden md:flex">
+      <!-- Right-side buttons -->
+      <div class="hidden md:flex space-x-4">
         <NuxtLink to="/auth/login" class="btn-login">Login</NuxtLink>
+        <NuxtLink to="/auth/signup" class="btn-signup">Sign Up</NuxtLink>
       </div>
 
       <!-- Mobile menu toggle -->
@@ -37,10 +38,15 @@
       <div v-if="isOpen" class="md:hidden bg-gray-900 border-t border-gray-700">
         <ul class="flex flex-col px-4 py-4 space-y-4 text-white">
           <li><NuxtLink @click="closeMenu" to="/">Home</NuxtLink></li>
+          <li><NuxtLink @click="closeMenu" to="/exploring">Explore</NuxtLink></li>
           <li><NuxtLink @click="closeMenu" to="/about">About</NuxtLink></li>
           <li><NuxtLink @click="closeMenu" to="/contact">Contact</NuxtLink></li>
-          <li><NuxtLink @click="closeMenu" to="/auth/login" class="btn-login">Login</NuxtLink></li>
-          <li><NuxtLink @click="closeMenu" to="/explore">Explore</NuxtLink></li>
+          <li class="border-t border-gray-700 pt-4">
+            <NuxtLink @click="closeMenu" to="/auth/login" class="btn-login">Login</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink @click="closeMenu" to="/auth/signup" class="btn-signup">Sign Up</NuxtLink>
+          </li>
         </ul>
       </div>
     </transition>
@@ -50,20 +56,27 @@
 <script setup>
 import { ref } from 'vue'
 const isOpen = ref(false)
-const closeMenu = () => { isOpen.value = false }
+const closeMenu = () => { isOpen.value = false}
+   
 </script>
 
 <style scoped>
-/* .navbar {
+/* Navbar base */
+.navbar {
   @apply fixed top-0 w-full z-50 bg-gray-950 border-b border-gray-800 shadow-md;
 }
 
-Login button style
+/* Login Button */
 .btn-login {
   @apply bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition duration-200;
-} */
-  
-Slide-in fade for mobile
+}
+
+/* Sign Up Button - stronger color */
+.btn-signup {
+  @apply bg-white text-black px-4 py-2 rounded hover:bg-gray-500 transition duration-200;
+}
+
+/* Mobile menu animation */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.3s ease;

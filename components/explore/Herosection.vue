@@ -4,7 +4,7 @@
       <h1 class="title">Explore Stories That Speak to Your Soul</h1>
       <p class="subtitle">Dive into powerful comics crafted by Ethiopian artists.</p>
       <div class="hero-buttons">
-        <router-link to="/explore" class="btn explore-btn">Start Exploring</router-link>
+        <router-link to="/exploring" class="btn explore-btn">Start Exploring</router-link>
         <router-link to="/sign-up/creator/signup-creator" class="btn creator-btn">Join as Creator</router-link>
       </div>
     </div>

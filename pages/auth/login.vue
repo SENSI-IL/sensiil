@@ -25,7 +25,7 @@
           <div>
             <div class="flex justify-between items-center mb-1">
               <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-              <NuxtLink to="/auth/forgot" class="text-sm text-indigo-600 hover:text-indigo-800">
+              <NuxtLink to="/auth/forgot_pa" class="text-sm text-indigo-600 hover:text-indigo-800">
   Forgot Password?
 </NuxtLink>
             </div>

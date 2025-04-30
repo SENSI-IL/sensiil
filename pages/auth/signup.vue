@@ -70,6 +70,7 @@
   </script>
   
   <style scoped>
+  
   .signup-container {
     max-width: 900px;
     margin: auto;
@@ -89,7 +90,7 @@
   }
   
   .choice-card {
-    background: #ffffff;
+    background: #322525;
     border-radius: 12px;
     border: 1px solid #ddd;
     width: 300px;

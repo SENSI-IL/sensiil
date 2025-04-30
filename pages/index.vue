@@ -1,10 +1,12 @@
 <template>
     <div>
       <Herosection />
+      
       <NewRelease />
       <ComicGrid />
       <HowItWorks />
       <Testimonial />
+      <footer />
     </div>
   </template>
   
@@ -14,4 +16,5 @@
   import ComicGrid from "@/components/explore/ComicGrid.vue";
   import HowItWorks from "@/components/explore/howitworks.vue";
   import Testimonial from "@/components/explore/testimonial.vue";
+  
   </script>
