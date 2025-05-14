@@ -90,7 +90,7 @@
   }
   
   .choice-card {
-    background: #322525;
+    background: #f6f6f6;
     border-radius: 12px;
     border: 1px solid #ddd;
     width: 300px;

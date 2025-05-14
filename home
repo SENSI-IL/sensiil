@@ -1,0 +1,132 @@
+<template>
+  <section class="relative  min-h-screen flex items-center justify-center px-4 py-20">
+    <!-- Paper Texture Overlay -->
+    <div class="absolute inset-0 bg-[src('public/img/white-texture.jpg')] bg-cover mix-blend-overlay opacity-90"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center max-w-2xl">
+      <!-- Speech Bubble -->
+       
+  
+      <div class="speech-bubble round float">well well well</div> -->
+
+
+
+      <!-- Buttons -->
+      <div class="mt-10 flex justify-center gap-4 flex-wrap">
+        <NuxtLink to="/explore" class="comic-button">Explore Stories</NuxtLink>
+        <NuxtLink to="/create" class="comic-button">Start Drawing</NuxtLink>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup>
+// No script needed unless you want to handle props
+</script>
+
+<style scoped>
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+.font-handwritten {
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.comic-button {
+  @apply bg-white border-4 border-black px-6 py-3 text-lg font-bold uppercase rounded-sm hover:bg-gray-100 transition;
+  box-shadow: 4px 4px 0 #000;
+}
+
+
+
+
+
+.tips h1{
+  font-size:2em;
+}
+
+@media only screen and (max-width: 600px) {
+  .tips {
+    display:none;
+  }
+}
+/*** Speech Bubble CSS Code Starts Here ***/
+
+.speech-bubble{
+  --arrow-w:0.6em;
+  --arrow-h:1.2em;
+  --bubble-corners:0rem;
+  --w:18em;
+  --border-size:4px;
+  --text-color:black;
+  --bubble-color:white;
+  --border-color:black;
+}
+.speech-bubble{
+  text-align:center;
+  font-family:cursive;
+  font-size:20px;
+  font-weight:bold;
+  color:var(--text-color);
+  background:var(--bubble-color);
+  padding:1em;
+  position:relative;
+  border-radius:var(--bubble-corners);
+  max-width:var(--w);
+  box-shadow:0 0 0 var(--border-size) var(--border-color);
+  margin-top: -1em;
+}
+.speech-bubble:before,
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  bottom: auto;
+  top: calc(50% - var(--arrow-w));
+  left: calc(-1 * var(--arrow-h) * 2 + 0.5px);
+  border-style: solid;
+  border-width: var(--arrow-w) var(--arrow-h);
+  border-color: transparent var(--bubble-color) transparent transparent;
+}
+
+.speech-bubble:before {
+  border-width: calc(var(--arrow-w) + var(--border-size)) calc(var(--arrow-h) + var(--border-size));
+  border-color: transparent var(--border-color) transparent transparent;
+  top: calc(50% - var(--arrow-w) - var(--border-size));
+  left: calc(-1 * var(--arrow-h) * 2 - 2.5 * var(--border-size));
+}
+
+.speech-bubble.float{
+  animation-name: float-up;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function:ease;
+}
+
+
+
+.speech-bubble.t.float{
+  animation-name: float-down;
+}
+
+@keyframes pop {
+  0% {transform: scale(0.8);}
+  80% {transform: scale(1.1);}
+  90% {transform: scale(0.9);}
+  100% {transform: scale(1);}
+}
+
+@keyframes float-up {
+  0% {transform: translateY(0);}
+  50% {transform: translateY(calc(-1 * var(--arrow-h)));}
+}
+
+
+
+@keyframes float-down {
+  0% {transform: translateY(0);}
+  50% {transform: translateY(var(--arrow-h));}
+}
+</style>
