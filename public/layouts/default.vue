@@ -9,7 +9,6 @@
   </template>
   
   <script setup>
-  import Navbar from '~/components/PublicNavbar.vue'
-//   import Footer from '@/components/Footer.vue'
-  </script>
+  import PublicNavbar from '~/components/PublicNavbar.vue'
+console.log('navbar is loaded')  </script>
   
