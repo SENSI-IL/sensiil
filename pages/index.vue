@@ -1,7 +1,7 @@
 <template>
     <div>
-      <Herosection />
       
+      <Herosection />
       <NewRelease />
       <ComicGrid />
       <HowItWorks />
@@ -16,5 +16,8 @@
   import ComicGrid from "@/components/explore/ComicGrid.vue";
   import HowItWorks from "@/components/explore/howitworks.vue";
   import Testimonial from "@/components/explore/testimonial.vue";
-  
+  definePageMeta({
+  layout: 'default'
+})
+
   </script>

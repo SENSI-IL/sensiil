@@ -185,7 +185,9 @@ const countries = [
 
 const selectedCountry = ref(countries[0]); // Default to Ethiopiaconst handleSubmit = async () => {
   // For testing, directly navigate to email verification
+  const handleSubmit = async () => {
   navigateTo('/sign-up/creator/email-verification');
+  };
   
   // For production, you would use:
   /*
