@@ -13,6 +13,5 @@
 <script setup>
 import Navbar from '@/components/common/Navbar.vue'
 import Footer from '@/components/common/footer.vue' // Uncomment and use it
-</script>
-
+</script>  
   

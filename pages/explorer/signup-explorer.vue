@@ -7,47 +7,47 @@
         </div>
   
         <!-- Signup Form -->
-        <form class="space-y-6" @submit.prevent="handleLogin">
+        <form class="space-y-6" @submit.prevent="handleSignup">
           <!-- Email Field -->
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              id="email"
-              v-model="form.email"
-              type="email"
-              required
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-              placeholder="your@email.com"
-            >
-          </div>
+<div>
+  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+  <input
+    id="email"
+    v-model="form.email"
+    type="email"
+    required
+    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-gray-900"
+    placeholder="your@email.com"
+  >
+</div>
   
-          <!-- Password Field with Toggle -->
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-              <NuxtLink to="/auth/forgot" class="text-sm text-indigo-600 hover:text-indigo-800">
-  Forgot Password?
-</NuxtLink>
-            </div>
-            <div class="relative">
-              <input
-                id="password"
-                v-model="form.password"
-                :type="showPassword ? 'text' : 'password'"
-                required
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all pr-10"
-                placeholder="••••••••"
-              >
-              <button
-                type="button"
-                class="absolute inset-y-0 right-0 pr-3 flex items-center"
-                @click="showPassword = !showPassword"
-              >
-                <EyeIcon v-if="!showPassword" class="h-5 w-5 text-gray-400" />
-                <EyeSlashIcon v-else class="h-5 w-5 text-gray-400" />
-              </button>
-            </div>
-          </div>
+<!-- Password Field with Toggle -->
+<div>
+  <div class="flex justify-between items-center mb-1">
+    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+    <NuxtLink to="/auth/forgot" class="text-sm text-indigo-600 hover:text-indigo-800">
+      Forgot Password?
+    </NuxtLink>
+  </div>
+  <div class="relative">
+    <input
+      id="password"
+      v-model="form.password"
+      :type="showPassword ? 'text' : 'password'"
+      required
+      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all pr-10 text-gray-900"
+      placeholder="••••••••"
+    >
+    <button
+      type="button"
+      class="absolute inset-y-0 right-0 pr-3 flex items-center"
+      @click="showPassword = !showPassword"
+    >
+      <EyeIcon v-if="!showPassword" class="h-5 w-5 text-gray-400" />
+      <EyeSlashIcon v-else class="h-5 w-5 text-gray-400" />
+    </button>
+  </div>
+</div>
   
           <!-- Signup Button - More prominent -->
           <button
@@ -107,18 +107,27 @@
   
   const showPassword = ref(false)
   
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     try {
-      // Add your login logic here
-      console.log('Logging in with:', form.value)
-      // await $fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   body: form.value
-      // })
-    } catch (error) {
-      console.error('Login error:', error)
-    }
+      const response = await $fetch('http://localhost:8000/api/explorer/register',  {
+        method: 'POST',
+        body: {
+          email: form.value.email,
+          password: form.value.password
+        }
+      })
+   
+  console.log('Login success:', response)
+    // Save token or user data as needed (e.g., useCookie or localStorage)
+    // localStorage.setItem('token', response.token)
+
+    // Redirect after login
+    router.push('/dashboard')
+  } catch (error) {
+    console.error('Login failed:', error)
+    alert('Invalid login credentials. Please try again.')
   }
+}
   
   const handleGoogleLogin = async () => {
     try {
@@ -136,7 +145,7 @@
   /* Custom focus styles */
   input:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+    box-shadow: 0 0 0 2px rgba(70, 229, 163, 0.2);
   }
   
   /* Transition effects */

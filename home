@@ -36,13 +36,9 @@
 }
 
 .comic-button {
-  @apply bg-white border-4 border-black px-6 py-3 text-lg font-bold uppercase rounded-sm hover:bg-gray-100 transition;
+ @apply bg-white border-4 border-black px-6 py-3 text-lg font-bold uppercase rounded-sm hover:bg-gray-100 transition;
   box-shadow: 4px 4px 0 #000;
 }
-
-
-
-
 
 .tips h1{
   font-size:2em;
